@@ -1,4 +1,5 @@
 let paused = true;
+let showVectorField = true;
 let system;
 let plane;
 let zoom = 4;
@@ -19,12 +20,11 @@ let viewport = {
 }
 
 function setup() {
-	createCanvas(600, 600);
-	// createCanvas(windowWidth, windowHeight);
+	// createCanvas(600, 600);
+	createCanvas(windowWidth, windowHeight);
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
-	console.log(f.eval(2,3));
 }
 
 function draw() {
@@ -34,7 +34,9 @@ function draw() {
 	plane.drawGrid(10);
 	plane.drawAxes();
 	plane.drawLabels();
-	plane.drawVectorField();
+	if (showVectorField) {
+		plane.drawVectorField();
+	}
 	system.draw();
 	if (!paused) {
 		system.applyForce(vectorField);
@@ -47,5 +49,8 @@ function keyPressed() {
 	}
 	if (key == 'R') {
 		system.reset();
+	}
+	if (key == 'V') {
+		showVectorField = !showVectorField;
 	}
 }

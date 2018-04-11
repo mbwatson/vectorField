@@ -1,6 +1,6 @@
 class Particle {
 	constructor(x, y) {
-		this.r = 5;
+		this.diameter = 4;
 		this.x = x;
 		this.y = y;
 		this.dx = 0;
@@ -11,7 +11,7 @@ class Particle {
 		noStroke();
 		// fill(color(255 - this.color, this.color, this.color));
 		fill(255);
-		ellipse(this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min), this.r, this.r);
+		ellipse(this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min), this.diameter, this.diameter);
 		// text(`(${this.x.toFixed(2)},${this.y.toFixed(2)})`, this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min));
 	}
 	applyForce(vectorField) {
