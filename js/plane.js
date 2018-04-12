@@ -1,18 +1,14 @@
 class Plane {
 	constructor() {
-		this.minx = -3;
-		this.maxx = 3;
-		this.miny = -3;
-		this.maxy = 3;
 		this.unit = width / (viewport.x.max - viewport.x.min);
-		this.tickSize = 10;
-		this.axisColor = color(128, 128, 128, 128);
-		this.axisWeight = 4;
-		this.gridColor = color(128, 128, 128, 128);
-		this.gridWeight = 1;
-		this.vectorColor = color(0, 255, 255, 100);
+		this.tickSize = config.plane.grid.axis.tickmarkSize;
+		this.axisColor = config.plane.grid.axis.color;
+		this.axisWeight = config.plane.grid.axis.weight;
+		this.gridColor = config.plane.grid.color;
+		this.gridWeight = config.plane.grid.weight;
+		this.vectorColor = config.vector.color;
+		this.vectorWeight = config.vector.weight;
 		this.vectorLength = this.unit / 3;
-		this.vectorWeight = 3;
 		this.vectorArrowheadSize = this.vectorLength / 4;
 	}
 	drawAxes() {
@@ -44,13 +40,13 @@ class Plane {
 	xTick(value, label) {
 		noFill();
 		stroke(this.axisColor);
-		strokeWeight(1);
+		strokeWeight(this.axisWeight);
 		line(value * this.unit, -this.tickSize, value * this.unit, this.tickSize);
 		// text(label, value * this.unit + this.tickSize, -2 * this.tickSize);
 	}
 	yTick(value) {
-		strokeWeight(1);
 		stroke(this.axisColor);
+		strokeWeight(this.axisWeight);
 		line(-this.tickSize, value * this.unit , this.tickSize, value * this.unit);
 	}
 	// drawLabels() {

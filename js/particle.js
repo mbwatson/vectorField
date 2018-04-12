@@ -1,11 +1,11 @@
 class Particle {
 	constructor(x, y) {
-		this.diameter = 6;
+		this.diameter = config.particle.diameter;
 		this.x = x;
 		this.y = y;
 		this.dx = 0;
 		this.dy = 0;
-		this.color = color(220, 220, 220);
+		this.color = config.particle.color;
 	}
 	draw() {
 		noStroke();
@@ -14,12 +14,14 @@ class Particle {
 		ellipse(this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min), this.diameter, this.diameter);
 		// text(`(${this.x.toFixed(2)},${this.y.toFixed(2)})`, this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min));
 	}
+	speed() {
+		Math.sqrt(this.dx**2 + this.dy**2)
+	}
 	applyForce(vectorField) {
-		this.dx = vectorField(this.x, this.y).x/1000;
-		this.dy = vectorField(this.x, this.y).y/1000;
+		this.dx = vectorField(this.x, this.y).x * config.plane.friction;
+		this.dy = vectorField(this.x, this.y).y * config.plane.friction;
 		this.x += this.dx;
 		this.y += this.dy;
-		// this.color = floor(255*Math.sqrt(this.dx**2 + this.dy**2));
 	}
 	update() {
 		this.x += this.dx;

@@ -1,19 +1,20 @@
 class ParticleSystem {
 	constructor() {
-		this.spacing = 0.5;
+		this.spacing = config.particle.spacing;
 		this.particles = this.newParticles();
 	}
 	newParticles() {
 		let particles = [];
+		let quadrantSize = max(viewport.x.max, viewport.y.max);
 		particles.push(new Particle(0, 0));
-		for (let i = this.spacing; i <= viewport.x.max; i += this.spacing) {
+		for (let i = this.spacing; i <= quadrantSize; i += this.spacing) {
 			particles.push(new Particle(i, 0));
 			particles.push(new Particle(-i, 0));
 			particles.push(new Particle(0, i));
 			particles.push(new Particle(0, -i));
 		}
-		for (let i = this.spacing; i <= viewport.x.max; i += this.spacing) {
-			for (let j = this.spacing; j <= viewport.y.max; j += this.spacing) {
+		for (let i = this.spacing; i <= quadrantSize; i += this.spacing) {
+			for (let j = this.spacing; j <= quadrantSize; j += this.spacing) {
 				particles.push(new Particle(i, j));
 				particles.push(new Particle(i, -j));
 				particles.push(new Particle(-i, j));

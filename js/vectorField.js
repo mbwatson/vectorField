@@ -1,7 +1,7 @@
 class VectorField {
 	constructor() {
+		this.spacing = config.vector.spacing;
 		this.eval = ({ x, y }) => vectorField(x, y);
-		this.spacing = 1;
 		this.vectors = this.newVectors();
 	}
 	newVectors() {
