@@ -44,7 +44,6 @@ function draw() {
 	if (showAxes) {
 		plane.drawAxes();
 	}
-	plane.drawLabels();
 	if (showVectorField) {
 		plane.drawVectorField();
 	}
