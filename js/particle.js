@@ -1,16 +1,16 @@
 class Particle {
 	constructor(x, y) {
-		this.diameter = 4;
+		this.diameter = 6;
 		this.x = x;
 		this.y = y;
 		this.dx = 0;
 		this.dy = 0;
-		this.color = 255;
+		this.color = color(220, 220, 220);
 	}
 	draw() {
 		noStroke();
 		// fill(color(255 - this.color, this.color, this.color));
-		fill(255);
+		fill(this.color);
 		ellipse(this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min), this.diameter, this.diameter);
 		// text(`(${this.x.toFixed(2)},${this.y.toFixed(2)})`, this.x * width / (viewport.x.max - viewport.x.min), -this.y * width / (viewport.x.max - viewport.x.min));
 	}

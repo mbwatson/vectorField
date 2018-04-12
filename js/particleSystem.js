@@ -1,6 +1,6 @@
 class ParticleSystem {
 	constructor() {
-		this.spacing = 0.2;
+		this.spacing = 0.5;
 		this.particles = this.newParticles();
 	}
 	newParticles() {

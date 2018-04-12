@@ -1,16 +1,8 @@
 class VectorField {
 	constructor() {
-		this.eval = function({ x, y }) {
-			return {
-				// 'x': 25,
-				// 'y': 50
-				'x': y**3 - 9*y,
-				'y': x**3 - 9*x
-			}
-		}
-		this.spacing = 0.25;
+		this.eval = ({ x, y }) => vectorField(x, y);
+		this.spacing = 1;
 		this.vectors = this.newVectors();
-		this.length = 5;
 	}
 	newVectors() {
 		let vectors = [];

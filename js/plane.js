@@ -6,18 +6,18 @@ class Plane {
 		this.maxy = 3;
 		this.unit = width / (viewport.x.max - viewport.x.min);
 		this.tickSize = 5;
-		this.axisColor = color(128, 128, 128, 100);
+		this.axisColor = color(128, 128, 128, 255);
 		this.axisWeight = 1;
-		this.gridColor = color(128, 128, 128, 64);
+		this.gridColor = color(128, 128, 128, 128);
 		this.gridWeight = 1;
-		this.vectorColor = color(0, 255, 255, 200);
-		this.vectorLength = this.unit / 6;
+		this.vectorColor = color(0, 255, 255, 100);
+		this.vectorLength = this.unit / 3;
 		this.vectorWeight = 2;
 	}
 	drawAxes() {
 		stroke(this.axisColor);
 		strokeWeight(this.axisWeight);
-		line(0, -width / 2, 0, width / 2);
+		line(0, -height / 2, 0, height / 2);
 		line(-width / 2, 0, width / 2, 0);
 	}
 	drawGrid() {
@@ -64,19 +64,19 @@ class Plane {
 		strokeWeight(this.vectorWeight);
 		stroke(this.vectorColor);
 		// easier to draw arrowhead
-		translate(this.unit * location.x, this.unit * location.y);
-		rotate(v.heading());
+		translate(this.unit * location.x, -this.unit * location.y);
+		rotate(PI - v.heading());
 		line(0, 0, -this.vectorLength, 0);
 		translate(-this.vectorLength, 0);
 		fill(this.vectorColor);
 		triangle(0, 0, 4, 2, 4, -2);
 		translate(this.vectorLength, 0);
-		rotate(-v.heading());
-		translate(-this.unit * location.x, -this.unit * location.y);
+		rotate(v.heading() - PI);
+		translate(-this.unit * location.x, this.unit * location.y);
 
 		// simpler, harder to draw arrowhead
-		// strokeWeight(1);
-		// stroke(this.vectorColor);
-		// line(this.unit * location.x, this.unit * location.y, this.unit * location.x + 25*v.x/v.mag(), this.unit * location.y + 25*v.y/v.mag());
+		strokeWeight(1);
+		stroke(this.vectorColor);
+		// line(this.unit * location.x, this.unit * location.y, this.unit * location.x + 25*v.x/v.mag(), this.unit * location.y + -25*v.y/v.mag());
 	}
 }
