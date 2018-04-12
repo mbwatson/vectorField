@@ -5,7 +5,7 @@ class Plane {
 		this.miny = -3;
 		this.maxy = 3;
 		this.unit = width / (viewport.x.max - viewport.x.min);
-		this.tickSize = 5;
+		this.tickSize = 10;
 		this.axisColor = color(128, 128, 128, 128);
 		this.axisWeight = 4;
 		this.gridColor = color(128, 128, 128, 128);
@@ -53,17 +53,17 @@ class Plane {
 		stroke(this.axisColor);
 		line(-this.tickSize, value * this.unit , this.tickSize, value * this.unit);
 	}
-	drawLabels() {
- 		noStroke();
-		for (let i = 1; i <= viewport.x.max; i += 1) {
-			this.xTick(i, i);
-			this.xTick(-i, -i);
-		}
-		for (let j = 1; j <= viewport.y.max; j += 1) {
-			this.yTick(j);
-			this.yTick(-j);
-		}
-	}
+	// drawLabels() {
+ // 		noStroke();
+	// 	for (let i = 1; i <= viewport.x.max; i += 1) {
+	// 		this.xTick(i, i);
+	// 		this.xTick(-i, -i);
+	// 	}
+	// 	for (let j = 1; j <= viewport.y.max; j += 1) {
+	// 		this.yTick(j);
+	// 		this.yTick(-j);
+	// 	}
+	// }
 	drawVectorField() {
 		for (let v of f.vectors) {
 			this.drawLocatedVector(v, v.tip);
