@@ -10,8 +10,9 @@ class Plane {
 		this.axisWeight = 1;
 		this.gridColor = color(128, 128, 128, 64);
 		this.gridWeight = 1;
-		this.vectorColor = color(0, 255, 255, 64);
-		this.vectorLength = this.unit / 4;
+		this.vectorColor = color(0, 255, 255, 200);
+		this.vectorLength = this.unit / 6;
+		this.vectorWeight = 2;
 	}
 	drawAxes() {
 		stroke(this.axisColor);
@@ -60,13 +61,16 @@ class Plane {
 		}
 	}
 	drawLocatedVector(location, v) {
-		strokeWeight(1);
+		strokeWeight(this.vectorWeight);
 		stroke(this.vectorColor);
 		// easier to draw arrowhead
 		translate(this.unit * location.x, this.unit * location.y);
-		// line(0, 0, v.x, v.y);
 		rotate(v.heading());
-		line(0, 0, this.vectorLength, 0);
+		line(0, 0, -this.vectorLength, 0);
+		translate(-this.vectorLength, 0);
+		fill(this.vectorColor);
+		triangle(0, 0, 4, 2, 4, -2);
+		translate(this.vectorLength, 0);
 		rotate(-v.heading());
 		translate(-this.unit * location.x, -this.unit * location.y);
 
