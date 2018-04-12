@@ -1,3 +1,32 @@
+let paused = true;
+let showVectorField = true;
+let showParticles = true;
+let showGrid = true;
+let showAxes = true;
+let zoom = 5;
+let system;
+let plane;
+let f;
+
+let vectorField = function(x, y) {
+	let vec;
+	vec = {
+		'x': y**3 - 9*y,
+		'y': x**3 - 9*x
+	}
+	// vec = {
+	// 	'x': 5,
+	// 	'y': 10
+	// }
+	return vec
+}
+
+let viewport = {
+	'x': { 'min': -zoom, 'max': zoom },
+	'y': { 'min': -zoom, 'max': zoom }
+}
+
+
 function setup() {
 	// createCanvas(600, 600);
 	createCanvas(windowWidth, windowHeight);
@@ -9,14 +38,19 @@ function setup() {
 function draw() {
 	background(50);
 	translate(width / 2, height / 2)
-	// scale(1, -1);
-	plane.drawGrid(10);
-	plane.drawAxes();
+	if (showGrid) {
+		plane.drawGrid(10);
+	}
+	if (showAxes) {
+		plane.drawAxes();
+	}
 	plane.drawLabels();
 	if (showVectorField) {
 		plane.drawVectorField();
 	}
-	system.draw();
+	if (showParticles) {
+		system.draw();
+	}
 	if (!paused) {
 		system.applyForce(vectorField);
 	}
@@ -31,5 +65,14 @@ function keyPressed() {
 	}
 	if (key == 'V') {
 		showVectorField = !showVectorField;
+	}
+	if (key == 'S') {
+		showParticles = !showParticles;
+	}
+	if (key == 'G') {
+		showGrid = !showGrid;
+	}
+	if (key == 'A') {
+		showAxes = !showAxes;
 	}
 }
