@@ -48,7 +48,8 @@ function setup() {
 		'x': { 'min': -zoom, 'max': zoom },
 		'y': { 'min': -zoom, 'max': zoom }
 	}
-	createCanvas(windowWidth, windowHeight);
+	// createCanvas(windowWidth, windowHeight);
+	createCanvas(600, 600);
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
