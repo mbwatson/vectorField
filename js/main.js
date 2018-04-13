@@ -16,6 +16,9 @@ let vectorField = function(x, y) {
 	// vec = { 'x': -y, 'y': x }
 	// vec = { 'x': x, 'y': y }
 	// vec = { 'x': Math.sin(y), 'y': Math.sin(x) }
+	// vec = { 'x': Math.sin(x) + Math.sin(y), 'y': Math.sin(x) - Math.sin(y) }
+	// vec = { 'x': 0, 'y': y*Math.sin(x) }
+	// vec = { 'x': x**3, 'y': y**3 }
 	return vec
 }
 
