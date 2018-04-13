@@ -57,6 +57,7 @@ function setup() {
 	let planeContainer = document.querySelector('#planeContainer');
 	let canvas = createCanvas(600, 600);
 	canvas.parent(planeContainer);
+	canvas.id('plane');
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
@@ -107,32 +108,38 @@ function mouseWheel(event) {
 }
 
 function initializeUI() {
-	let playPauseButton = document.querySelector('#playPause');
+	const playPauseButton = document.querySelector('#playPause');
 	playPauseButton.addEventListener('click', (e) => {
 		paused = !paused;
-		// let icon = playPauseButton.children[0];
-		// icon.classList.toggle('fa-pause');
-		// icon.classList.toggle('fa-play');
+		let icon = playPauseButton.children[0];
+		icon.classList.toggle('fa-pause');
+		icon.classList.toggle('fa-play');
 	});
-	let clearButton = document.querySelector('#clearParticles');
+	const clearButton = document.querySelector('#clearParticles');
 	clearButton.addEventListener('click', () => system.empty() );
-	let respawnButton = document.querySelector('#respawnParticles');
+	const respawnButton = document.querySelector('#respawnParticles');
 	respawnButton.addEventListener('click', () => system.respawn() );
-	let toggleParticlesButton = document.querySelector('#toggleParticles');
+	const toggleParticlesButton = document.querySelector('#toggleParticles');
 	toggleParticlesButton.addEventListener('click', () => {
 		showParticles = !showParticles;
 	});
-	let toggleVectorsButton = document.querySelector('#toggleVectors');
+	const toggleVectorsButton = document.querySelector('#toggleVectors');
 	toggleVectorsButton.addEventListener('click', () => {
 		showVectorField = !showVectorField;
 	});
-	let toggleAxesButton = document.querySelector('#toggleAxes');
+	const toggleAxesButton = document.querySelector('#toggleAxes');
 	toggleAxesButton.addEventListener('click', () => {
 		showAxes = !showAxes;
 	});
-	let toggleGridButton = document.querySelector('#toggleGrid');
+	const toggleGridButton = document.querySelector('#toggleGrid');
 	toggleGridButton.addEventListener('click', () => {
 		showGrid = !showGrid;
 	});
-	console.log(canvas);
+	const planeCanvas = document.getElementById('plane');
+	planeCanvas.addEventListener('mouseover', () => {
+		planeCanvas.classList.add('hovering');
+	});
+	planeCanvas.addEventListener('mouseout', () => {
+		planeCanvas.classList.remove('hovering');
+	});
 }
