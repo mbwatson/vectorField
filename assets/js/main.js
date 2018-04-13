@@ -107,6 +107,11 @@ function mouseWheel(event) {
 	return false; // to prevent page scrolling
 }
 
+Element.prototype.toggleClasses = function(className1, className2) {
+	this.classList.toggle(className1);
+	this.classList.toggle(className2);
+}
+
 function initializeUI() {
 	// play/pause
 	const playPauseButton = document.querySelector('#playPause');
@@ -127,23 +132,26 @@ function initializeUI() {
 	toggleParticlesButton.addEventListener('click', () => {
 		showParticles = !showParticles;
 		let icon = toggleParticlesButton.children[0];
-		icon.classList.toggle('fa-eye');
-		icon.classList.toggle('fa-eye-slash');
+		icon.toggleClasses('fa-eye', 'fa-eye-slash');
+		toggleParticlesButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
 	// toggle vector visibility
 	const toggleVectorsButton = document.querySelector('#toggleVectors');
 	toggleVectorsButton.addEventListener('click', () => {
 		showVectorField = !showVectorField;
+		toggleVectorsButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
 	// toggle axis visibility
 	const toggleAxesButton = document.querySelector('#toggleAxes');
 	toggleAxesButton.addEventListener('click', () => {
 		showAxes = !showAxes;
+		toggleAxesButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
 	// toggle gid visibility
 	const toggleGridButton = document.querySelector('#toggleGrid');
 	toggleGridButton.addEventListener('click', () => {
 		showGrid = !showGrid;
+		toggleGridButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
 	// hovering over plane check
 	const planeCanvas = document.getElementById('plane');
