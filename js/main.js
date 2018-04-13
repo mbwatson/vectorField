@@ -49,7 +49,9 @@ function setup() {
 		'y': { 'min': -zoom, 'max': zoom }
 	}
 	// createCanvas(windowWidth, windowHeight);
-	createCanvas(600, 600);
+	let planeContainer = document.querySelector('#planeContainer');
+	let canvas = createCanvas(600, 600);
+	canvas.parent(planeContainer);
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
