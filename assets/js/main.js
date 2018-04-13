@@ -35,8 +35,8 @@ function setup() {
 					'weight': 4,
 				}
 			},
-			'friction': 0.5,
-			'deltaFriction': 0.1
+			'velocity': 0.2,
+			'deltaVelocity': 0.1
 		},
 		'vector': {
 			'spacing': 0.5,
@@ -44,7 +44,7 @@ function setup() {
 			'weight': 2,
 		},
 		'particle': {
-			'spacing': 0.25,
+			'spacing': 0.5,
 			'diameter': 8,
 			'color': color(220, 255, 220),
 		},
@@ -60,7 +60,7 @@ function setup() {
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
-	initializeButtons();
+	initializeUI();
 }
 
 function draw() {
@@ -84,30 +84,6 @@ function draw() {
 	}
 }
 
-function keyPressed() {
-	if (key == ' ') {
-		paused = !paused;
-	}
-	if (key == 'R') {
-		system.respawn();
-	}
-	if (key == 'C') {
-		system.empty();
-	}
-	if (key == 'V') {
-		showVectorField = !showVectorField;
-	}
-	if (key == 'S') {
-		showParticles = !showParticles;
-	}
-	if (key == 'G') {
-		showGrid = !showGrid;
-	}
-	if (key == 'A') {
-		showAxes = !showAxes;
-	}
-}
-
 function mouseXCoordinate() {
 	return (mouseX - width / 2) / plane.unit;
 }
@@ -126,20 +102,37 @@ function mouseDragged() {
 
 function mouseWheel(event) {
 	const mouseDirection = event.deltaY > 0 ? -1 : 1;
-	config.plane.friction += mouseDirection * config.plane.deltaFriction;
+	config.plane.velocity += mouseDirection * config.plane.deltaVelocity;
 	return false; // to prevent page scrolling
 }
 
-function initializeButtons() {
+function initializeUI() {
 	let playPauseButton = document.querySelector('#playPause');
 	playPauseButton.addEventListener('click', (e) => {
 		paused = !paused;
-		let icon = playPauseButton.children[0];
-		icon.classList.toggle('fa-pause');
-		icon.classList.toggle('fa-play');
+		// let icon = playPauseButton.children[0];
+		// icon.classList.toggle('fa-pause');
+		// icon.classList.toggle('fa-play');
 	});
 	let clearButton = document.querySelector('#clearParticles');
 	clearButton.addEventListener('click', () => system.empty() );
 	let respawnButton = document.querySelector('#respawnParticles');
 	respawnButton.addEventListener('click', () => system.respawn() );
+	let toggleParticlesButton = document.querySelector('#toggleParticles');
+	toggleParticlesButton.addEventListener('click', () => {
+		showParticles = !showParticles;
+	});
+	let toggleVectorsButton = document.querySelector('#toggleVectors');
+	toggleVectorsButton.addEventListener('click', () => {
+		showVectorField = !showVectorField;
+	});
+	let toggleAxesButton = document.querySelector('#toggleAxes');
+	toggleAxesButton.addEventListener('click', () => {
+		showAxes = !showAxes;
+	});
+	let toggleGridButton = document.querySelector('#toggleGrid');
+	toggleGridButton.addEventListener('click', () => {
+		showGrid = !showGrid;
+	});
+	console.log(canvas);
 }
