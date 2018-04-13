@@ -18,8 +18,8 @@ class Particle {
 		Math.sqrt(this.dx**2 + this.dy**2)
 	}
 	applyForce(vectorField) {
-		this.dx = vectorField(this.x, this.y).x * config.plane.friction;
-		this.dy = vectorField(this.x, this.y).y * config.plane.friction;
+		this.dx = vectorField(this.x, this.y).x / (500 * config.plane.friction);
+		this.dy = vectorField(this.x, this.y).y / (500 * config.plane.friction);
 		this.x += this.dx;
 		this.y += this.dy;
 	}
