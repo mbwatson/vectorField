@@ -44,10 +44,8 @@ class ParticleSystem {
 	}
 	update() {
 		for (let i = this.particles.length - 1; i >= 0; i--) {
-			if (abs(this.particles[i].x) < width / 2 && abs(this.particles[i].y) < height / 2) {
-				// this.particles[i].update();
-			} else {
-				// this.particles.splice(i, 1);
+			if (abs(this.particles[i].x) > width || abs(this.particles[i].y) > height) {
+				this.particles.splice(i, 1);
 			}
 		}
 	}
