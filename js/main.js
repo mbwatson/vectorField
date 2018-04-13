@@ -7,6 +7,7 @@ let showAxes = true;
 let zoom = 5;
 let system;
 let plane;
+let viewport;
 let f;
 
 let vectorField = function(x, y) {
@@ -15,11 +16,6 @@ let vectorField = function(x, y) {
 	// vec = { 'x': -y, 'y': x }
 	// vec = { 'x': x, 'y': y }
 	return vec
-}
-
-let viewport = {
-	'x': { 'min': -zoom, 'max': zoom },
-	'y': { 'min': -zoom, 'max': zoom }
 }
 
 function setup() {
@@ -34,7 +30,7 @@ function setup() {
 					'weight': 4,
 				}
 			},
-			'friction': 1,
+			'friction': 0.5,
 			'deltaFriction': 0.1
 		},
 		'vector': {
@@ -48,6 +44,10 @@ function setup() {
 			'color': color(220, 255, 220),
 		},
 	};
+	viewport = {
+		'x': { 'min': -zoom, 'max': zoom },
+		'y': { 'min': -zoom, 'max': zoom }
+	}
 	createCanvas(windowWidth, windowHeight);
 	plane = new Plane();
 	system = new ParticleSystem();
@@ -118,5 +118,4 @@ function mouseDragged() {
 function mouseWheel(event) {
 	const mouseDirection = event.deltaY > 0 ? -1 : 1;
 	config.plane.friction += mouseDirection * config.plane.deltaFriction;
-	console.log(config.plane.friction);
 }
