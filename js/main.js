@@ -34,7 +34,8 @@ function setup() {
 					'weight': 4,
 				}
 			},
-			'friction': 1
+			'friction': 1,
+			'deltaFriction': 0.1
 		},
 		'vector': {
 			'spacing': 0.5,
@@ -69,6 +70,7 @@ function draw() {
 		system.draw();
 	}
 	if (!paused) {
+		system.update();
 		system.applyForce(vectorField);
 	}
 }
@@ -111,4 +113,10 @@ function mouseClicked() {
 
 function mouseDragged() {
 	system.addParticle(mouseXCoordinate(), mouseYCoordinate());
+}
+
+function mouseWheel(event) {
+	const mouseDirection = event.deltaY > 0 ? -1 : 1;
+	config.plane.friction += mouseDirection * config.plane.deltaFriction;
+	console.log(config.plane.friction);
 }
