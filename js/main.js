@@ -15,6 +15,7 @@ let vectorField = function(x, y) {
 	vec = { 'x': y**3 - 9*y, 'y': x**3 - 9*x }
 	// vec = { 'x': -y, 'y': x }
 	// vec = { 'x': x, 'y': y }
+	// vec = { 'x': Math.sin(y), 'y': Math.sin(x) }
 	return vec
 }
 
@@ -39,7 +40,7 @@ function setup() {
 			'weight': 2,
 		},
 		'particle': {
-			'spacing': 0.5,
+			'spacing': 0.25,
 			'diameter': 8,
 			'color': color(220, 255, 220),
 		},
