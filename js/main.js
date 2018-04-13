@@ -80,6 +80,9 @@ function keyPressed() {
 	if (key == 'R') {
 		system.reset();
 	}
+	if (key == 'C') {
+		system.empty();
+	}
 	if (key == 'V') {
 		showVectorField = !showVectorField;
 	}
