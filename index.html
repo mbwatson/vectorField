@@ -41,8 +41,8 @@
   <div id="container">
     <h1>Particle System in a Vector Field</h1>
     <div id="planeContainer"></div>
-    <div class="instructions">
-      <h2>Instructions</h2>
+    <button id="openInstructions">Instructions</button>
+    <dialog id="instructions">
       <ul>
         <li>C - Clear particles</li>
         <li>R - Reset particles' initial positions</li>
@@ -55,8 +55,25 @@
         <li>Mouse drag - add multiple particles to the system</li>
         <li>Mouse scroll - increase/decrease velocity</li>
       </ul>
-    </div>
+      <button id="closeInstructions" type="reset">Close</button>
+    </dialog>
   </div>
+  <script type="text/javascript">
+    (function() {
+      let openInstructionsButton = document.getElementById('openInstructions');
+      let instructionsDialog = document.getElementById('instructions');
+      let closeInstructionsButton = document.getElementById('closeInstructions');
+      // Update button opens a modal dialog
+      openInstructionsButton.addEventListener('click', function() {
+        instructionsDialog.showModal();
+      });
+
+      // Form cancel button closes the dialog box
+      closeInstructionsButton.addEventListener('click', function() {
+        instructionsDialog.close();
+      });
+    })();
+  </script>
 <body>
 </body>
 </html>
