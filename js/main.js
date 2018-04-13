@@ -34,7 +34,7 @@ function setup() {
 					'weight': 4,
 				}
 			},
-			'friction': 5
+			'friction': 1
 		},
 		'vector': {
 			'spacing': 0.5,
@@ -94,9 +94,18 @@ function keyPressed() {
 	}
 }
 
+function mouseXCoordinate() {
+	return (mouseX - width / 2) / plane.unit;
+}
+
+function mouseYCoordinate() {
+	return (height / 2 - mouseY) / plane.unit;
+}
+
 function mouseClicked() {
-	let x = (mouseX - width / 2) / plane.unit;
-	let y = (height / 2 - mouseY) / plane.unit;
-	console.log(x, y);
-	system.addParticle(x, y);
+	system.addParticle(mouseXCoordinate(), mouseYCoordinate());
+}
+
+function mouseDragged() {
+	system.addParticle(mouseXCoordinate(), mouseYCoordinate());
 }
