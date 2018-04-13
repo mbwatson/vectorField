@@ -137,12 +137,7 @@ function initializeButtons() {
 		let icon = playPauseButton.children[0];
 		icon.classList.toggle('fa-pause');
 		icon.classList.toggle('fa-play');
-		// if (icon.classList.contains('fa-pause') == true) {
-		// 	console.log('has pause');
-		// } else {
-		// 	console.log('has play');
-		// }
-	} );
+	});
 	let clearButton = document.querySelector('#clearParticles');
 	clearButton.addEventListener('click', () => system.empty() );
 	let respawnButton = document.querySelector('#respawnParticles');
