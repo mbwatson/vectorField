@@ -1,0 +1,30 @@
+/** { border: 1px solid #0ff; }*/
+body {
+  font-family: 'Tajawal', sans-serif;
+  padding: 0;
+  margin: 0;
+  /*overflow: hidden;*/
+  background-color: #323232; }
+
+#container {
+  width: 600px;
+  margin: auto; }
+
+header {
+  margin-top: 1em; }
+
+h1 {
+  color: #fff;
+  text-align: center; }
+
+#planeContainer {
+  text-align: center; }
+
+canvas {
+  border: 1px solid #fff; }
+
+#controls {
+  color: #fff;
+  font-size: 75%; }
+
+/*# sourceMappingURL=style.css.map */
