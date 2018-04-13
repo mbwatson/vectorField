@@ -23,6 +23,9 @@ class ParticleSystem {
 		}
 		return particles;
 	}
+	addParticle(x, y) {
+		this.particles.push(new Particle(x, y));
+	}
 	reset() {
 		this.particles = this.newParticles();
 	}

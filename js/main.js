@@ -34,7 +34,7 @@ function setup() {
 					'weight': 4,
 				}
 			},
-			'friction': 0.001
+			'friction': 5
 		},
 		'vector': {
 			'spacing': 0.5,
@@ -42,7 +42,7 @@ function setup() {
 			'weight': 2,
 		},
 		'particle': {
-			'spacing': 0.25,
+			'spacing': 0.5,
 			'diameter': 8,
 			'color': color(220, 255, 220),
 		},
@@ -92,4 +92,11 @@ function keyPressed() {
 	if (key == 'A') {
 		showAxes = !showAxes;
 	}
+}
+
+function mouseClicked() {
+	let x = (mouseX - width / 2) / plane.unit;
+	let y = (height / 2 - mouseY) / plane.unit;
+	console.log(x, y);
+	system.addParticle(x, y);
 }
