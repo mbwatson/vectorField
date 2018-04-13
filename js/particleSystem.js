@@ -26,6 +26,9 @@ class ParticleSystem {
 	addParticle(x, y) {
 		this.particles.push(new Particle(x, y));
 	}
+	empty() {
+		this.particles = [];
+	}
 	reset() {
 		this.particles = this.newParticles();
 	}
