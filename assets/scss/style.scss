@@ -1,4 +1,4 @@
-/** { border: 1px solid #0ff; }*/
+// * { border: 1px solid #0ff; }
 body {
   font-family: 'Tajawal', sans-serif;
 	padding: 0;
@@ -21,9 +21,14 @@ h1 {
   text-align: center;
 }
 canvas {
-  border: 1px solid #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+.hovering {
+  border: 2px solid #3ff;
 }
 #controls {
   color: #fff;
   font-size: 75%;
+  text-align: center;
 }

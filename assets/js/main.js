@@ -9,19 +9,21 @@ let system;
 let plane;
 let viewport;
 let f;
+let hovering = false;
 
 let vectorField = function(x, y) {
-	let vec = {};
-	vec = { 'x': y**3 - 9*y, 'y': x**3 - 9*x }
-	// vec = { 'x': -y, 'y': x }
-	// vec = { 'x': x, 'y': y }
-	// vec = { 'x': Math.sin(y), 'y': Math.sin(x) }
-	// vec = { 'x': Math.sin(x) + Math.sin(y), 'y': Math.sin(x) - Math.sin(y) }
-	// vec = { 'x': 0, 'y': y*Math.sin(x) }
-	// vec = { 'x': x**3, 'y': y**3 }
-	// vec = { 'x': Math.cos(x + y), 'y': Math.sin(x*y) }
-	return vec
+	let func;
+	func = {'x': y**3 - 9*y, 'y': x**3 - 9*x };
+	// func = {'x': -y, 'y': x };
+	// func = { 'x': x, 'y': y };
+	// func = { 'x': Math.sin(y), 'y': Math.sin(x) };
+	// func = { 'x': Math.sin(x) + Math.sin(y), 'y': Math.sin(x) - Math.sin(y) };
+	// func = { 'x': 0, 'y': y*Math.sin(x) };
+	// func = { 'x': x**3, 'y': y**3 };
+	// func = { 'x': Math.cos(x + y), 'y': Math.sin(x*y) };
+	return func;
 }
+
 
 function setup() {
 	config = {
@@ -40,7 +42,7 @@ function setup() {
 		},
 		'vector': {
 			'spacing': 0.5,
-			'color': color(0, 255, 255, 64),
+			'color': color(0, 255, 255, 128),
 			'weight': 2,
 		},
 		'particle': {
@@ -102,8 +104,10 @@ function mouseDragged() {
 }
 
 function mouseWheel(event) {
-	const mouseDirection = event.deltaY > 0 ? -1 : 1;
-	config.plane.velocity += mouseDirection * config.plane.deltaVelocity;
+	if (hovering) {
+		const mouseDirection = event.deltaY > 0 ? -1 : 1;
+		config.plane.velocity += mouseDirection * config.plane.deltaVelocity;
+	}
 	return false; // to prevent page scrolling
 }
 
@@ -156,9 +160,14 @@ function initializeUI() {
 	// hovering over plane check
 	const planeCanvas = document.getElementById('plane');
 	planeCanvas.addEventListener('mouseover', () => {
+		hovering = true;
 		planeCanvas.classList.add('hovering');
 	});
 	planeCanvas.addEventListener('mouseout', () => {
 		planeCanvas.classList.remove('hovering');
+		hovering = false;
 	});
+	//
+	const presetFunctionsDiv = document.getElementById('presets');
+	// shortcuts as buttons to change the vector field to some preset vector funcitons
 }
