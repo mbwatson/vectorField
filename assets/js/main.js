@@ -57,9 +57,7 @@ function setup() {
 	}
 	// createCanvas(windowWidth, windowHeight);
 	let planeContainer = document.querySelector('#planeContainer');
-	let canvas = createCanvas(600, 600);
-	canvas.parent(planeContainer);
-	canvas.id('plane');
+	let canvas = createCanvas(600, 600).id('plane').parent(planeContainer);
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();

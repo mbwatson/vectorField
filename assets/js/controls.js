@@ -1,5 +1,23 @@
-// play/pause
+const planeCanvas = document.getElementById('plane');
 const playPauseButton = document.querySelector('#playPause');
+const clearButton = document.querySelector('#clearParticles');
+const respawnButton = document.querySelector('#respawnParticles');
+const toggleParticlesButton = document.querySelector('#toggleParticles');
+const toggleVectorsButton = document.querySelector('#toggleVectors');
+const toggleAxesButton = document.querySelector('#toggleAxes');
+const toggleGridButton = document.querySelector('#toggleGrid');
+
+// hovering over plane check
+// planeCanvas.addEventListener('mouseover', () => {
+// 	hovering = true;
+// 	planeCanvas.classList.add('hovering');
+// });
+// planeCanvas.addEventListener('mouseout', () => {
+// 	planeCanvas.classList.remove('hovering');
+// 	hovering = false;
+// });
+
+// play/pause
 playPauseButton.addEventListener('click', (e) => {
 	paused = !paused;
 	let icon = playPauseButton.children[0];
@@ -8,15 +26,12 @@ playPauseButton.addEventListener('click', (e) => {
 });
 
 // delete
-const clearButton = document.querySelector('#clearParticles');
 clearButton.addEventListener('click', () => system.empty() );
 
 // respawn
-const respawnButton = document.querySelector('#respawnParticles');
 respawnButton.addEventListener('click', () => system.respawn() );
 
 // toggle particle visibility
-const toggleParticlesButton = document.querySelector('#toggleParticles');
 toggleParticlesButton.addEventListener('click', () => {
 	showParticles = !showParticles;
 	let icon = toggleParticlesButton.children[0];
@@ -25,35 +40,21 @@ toggleParticlesButton.addEventListener('click', () => {
 });
 
 // toggle vector visibility
-const toggleVectorsButton = document.querySelector('#toggleVectors');
 toggleVectorsButton.addEventListener('click', () => {
 	showVectorField = !showVectorField;
 	toggleVectorsButton.toggleClasses('btn-primary', 'btn-secondary');
 });
 
 // toggle axis visibility
-const toggleAxesButton = document.querySelector('#toggleAxes');
 toggleAxesButton.addEventListener('click', () => {
 	showAxes = !showAxes;
 	toggleAxesButton.toggleClasses('btn-primary', 'btn-secondary');
 });
 
 // toggle grid visibility
-const toggleGridButton = document.querySelector('#toggleGrid');
 toggleGridButton.addEventListener('click', () => {
 	showGrid = !showGrid;
 	toggleGridButton.toggleClasses('btn-primary', 'btn-secondary');
-});
-
-// hovering over plane check
-const planeCanvas = document.getElementById('plane');
-planeCanvas.addEventListener('mouseover', () => {
-	hovering = true;
-	planeCanvas.classList.add('hovering');
-});
-planeCanvas.addEventListener('mouseout', () => {
-	planeCanvas.classList.remove('hovering');
-	hovering = false;
 });
 
 //
