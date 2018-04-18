@@ -24,10 +24,10 @@ class Particle {
 	speed() {
 		Math.sqrt(this.dx**2 + this.dy**2)
 	}
-	applyForce(vectorField) {
+	applyForce(force) {
 		if (config.plane.velocity != 0) {
-			this.dx = vectorField(this.x, this.y).x * config.plane.velocity / 500;
-			this.dy = vectorField(this.x, this.y).y * config.plane.velocity / 500;
+			this.dx = force.eval(this).x * config.plane.velocity / 500;
+			this.dy = force.eval(this).y * config.plane.velocity / 500;
 		} else {
 			this.dx = this.dy = 0;
 		}

@@ -1,9 +1,12 @@
 class VectorField {
 	constructor() {
+		this.func = vectorFunctions[0].eval;
 		this.spacing = config.vector.spacing;
-		this.eval = ({ x, y }) => vectorField(x, y);
 		this.vectors = this.newVectors();
 	}
+	eval(x, y) {
+		return this.func(x, y);
+	};
 	newVectors() {
 		let vectors = [];
 		vectors.push(createVector(0, 0));
@@ -28,3 +31,9 @@ class VectorField {
 	}
 }
 
+class VectorFunction {
+	constructor(m, n, latex) {
+		this.eval = function({x, y}) { return {'x': m(x, y), 'y': n(x, y)} };
+		this.latex = latex;
+	}
+}
