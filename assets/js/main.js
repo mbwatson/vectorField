@@ -74,7 +74,7 @@ function setup() {
 			'deltaVelocity': 0.1
 		},
 		'vector': {
-			'spacing': 1,
+			'spacing': 0.5,
 			'color': color(0, 255, 255, 128),
 			'weight': 2,
 		},

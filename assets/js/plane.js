@@ -8,8 +8,8 @@ class Plane {
 		this.gridWeight = config.plane.grid.weight;
 		this.vectorColor = config.vector.color;
 		this.vectorWeight = config.vector.weight;
-		this.vectorLength = this.unit / ( 2 * config.vector.spacing );
-		this.vectorArrowheadSize = this.vectorLength / 4;
+		this.vectorLength = this.unit * ( config.vector.spacing / 2);
+		this.vectorArrowheadSize = this.vectorLength / 6;
 	}
 	drawAxes() {
 		stroke(this.axisColor);
