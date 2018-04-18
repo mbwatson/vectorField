@@ -117,6 +117,7 @@ Element.prototype.toggleClasses = function(className1, className2) {
 
 function setupUI() {
 	controlsDiv = document.getElementById('controls');
+	planeCanvas = document.getElementById('plane');
 	playPauseButton = createButton('Play/Pause').addClass('btn btn-primary').parent(controlsDiv);
 	clearButton = createButton('Clear').addClass('btn btn-primary').parent(controlsDiv);
 	respawnButton = createButton('Respawn').addClass('btn btn-primary').parent(controlsDiv);
@@ -124,54 +125,36 @@ function setupUI() {
 	toggleVectorsButton = createButton('Vectors').addClass('btn btn-primary').parent(controlsDiv);
 	toggleAxesButton = createButton('Axes').addClass('btn btn-primary').parent(controlsDiv);
 	toggleGridButton = createButton('Grid').addClass('btn btn-primary').parent(controlsDiv);
-	vectorButton = createButton('$\\langle -y, x \\rangle$');
-	vectorButton.parent(presetFunctionsDiv);
+	vectorButton = createButton('$\\langle -y, x \\rangle$').parent(presetFunctionsDiv);
 }
 
 function initializeUI() {
 	// play/pause
 	playPauseButton.mouseClicked(() => {
 		paused = !paused;
-		// let icon = playPauseButton.children[0];
-		// icon.classList.toggle('fa-pause');
-		// icon.classList.toggle('fa-play');
 	});
-	// delete
 	clearButton.mouseClicked(() => system.empty() );
-	// respawn
 	respawnButton.mouseClicked(() => system.respawn() );
-	// // toggle particle visibility
-	// toggleParticlesButton.addEventListener('click', () => {
-	// 	showParticles = !showParticles;
-	// 	let icon = toggleParticlesButton.children[0];
-	// 	icon.toggleClasses('fa-eye', 'fa-eye-slash');
-	// 	toggleParticlesButton.toggleClasses('btn-primary', 'btn-secondary');
-	// });
-	// // toggle vector visibility
-	// toggleVectorsButton.addEventListener('click', () => {
-	// 	showVectorField = !showVectorField;
-	// 	toggleVectorsButton.toggleClasses('btn-primary', 'btn-secondary');
-	// });
-	// // toggle axis visibility
-	// toggleAxesButton.addEventListener('click', () => {
-	// 	showAxes = !showAxes;
-	// 	toggleAxesButton.toggleClasses('btn-primary', 'btn-secondary');
-	// });
-	// // toggle gid visibility
-	// toggleGridButton.addEventListener('click', () => {
-	// 	showGrid = !showGrid;
-	// 	toggleGridButton.toggleClasses('btn-primary', 'btn-secondary');
-	// });
-	// // hovering over plane check
-	// planeCanvas.addEventListener('mouseover', () => {
-	// 	hovering = true;
-	// 	planeCanvas.classList.add('hovering');
-	// });
-	// planeCanvas.addEventListener('mouseout', () => {
-	// 	planeCanvas.classList.remove('hovering');
-	// 	hovering = false;
-	// });
-	//
+	toggleParticlesButton.mouseClicked(() => {
+		showParticles = !showParticles;
+	});
+	toggleVectorsButton.mouseClicked(() => {
+		showVectorField = !showVectorField;
+	});
+	toggleAxesButton.mouseClicked(() => {
+		showAxes = !showAxes;
+	});
+	toggleGridButton.mouseClicked(() => {
+		showGrid = !showGrid;
+	});
+	planeCanvas.addEventListener('mouseover', () => {
+		hovering = true;
+		// planeCanvas.classList.add('hovering');
+	});
+	planeCanvas.addEventListener('mouseout', () => {
+		hovering = false;
+		// planeCanvas.classList.remove('hovering');
+	});
 	// vectorButton.addEventListener('click', () => {
 	// 	console.log('asdadsasd');
 	// });
