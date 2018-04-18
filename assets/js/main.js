@@ -11,19 +11,16 @@ let viewport;
 let f;
 let hovering = false;
 
-let vectorField = function(x, y) {
-	let func;
-	func = {'x': y**3 - 9*y, 'y': x**3 - 9*x };
-	// func = {'x': -y, 'y': x };
-	// func = { 'x': x, 'y': y };
-	// func = { 'x': Math.sin(y), 'y': Math.sin(x) };
-	// func = { 'x': Math.sin(x) + Math.sin(y), 'y': Math.sin(x) - Math.sin(y) };
-	// func = { 'x': 0, 'y': y*Math.sin(x) };
-	// func = { 'x': x**3, 'y': y**3 };
-	// func = { 'x': Math.cos(x + y), 'y': Math.sin(x*y) };
-	return func;
-}
-
+// Controls
+let playPauseButton;
+let clearButton;
+let respawnButton;
+let toggleParticlesButton;
+let toggleVectorsButton;
+let toggleAxesButton;
+let toggleGridButton;
+let planeCanvas;
+let presetFunctionsDiv;
 
 function setup() {
 	config = {
@@ -63,6 +60,7 @@ function setup() {
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
+	setupUI();
 	initializeUI();
 }
 
@@ -83,7 +81,8 @@ function draw() {
 	}
 	if (!paused) {
 		system.update();
-		system.applyForce(vectorField);
+		// console.log(f);
+		system.applyForce(f);
 	}
 }
 
@@ -116,58 +115,64 @@ Element.prototype.toggleClasses = function(className1, className2) {
 	this.classList.toggle(className2);
 }
 
+function setupUI() {
+	controlsDiv = document.getElementById('controls');
+	playPauseButton = createButton('Play/Pause').addClass('btn btn-primary').parent(controlsDiv);
+	clearButton = createButton('Clear').addClass('btn btn-primary').parent(controlsDiv);
+	respawnButton = createButton('Respawn').addClass('btn btn-primary').parent(controlsDiv);
+	toggleParticlesButton = createButton('Particles').addClass('btn btn-primary').parent(controlsDiv);
+	toggleVectorsButton = createButton('Vectors').addClass('btn btn-primary').parent(controlsDiv);
+	toggleAxesButton = createButton('Axes').addClass('btn btn-primary').parent(controlsDiv);
+	toggleGridButton = createButton('Grid').addClass('btn btn-primary').parent(controlsDiv);
+	vectorButton = createButton('$\\langle -y, x \\rangle$');
+	vectorButton.parent(presetFunctionsDiv);
+}
+
 function initializeUI() {
 	// play/pause
-	const playPauseButton = document.querySelector('#playPause');
-	playPauseButton.addEventListener('click', (e) => {
+	playPauseButton.mouseClicked(() => {
 		paused = !paused;
-		let icon = playPauseButton.children[0];
-		icon.classList.toggle('fa-pause');
-		icon.classList.toggle('fa-play');
+		// let icon = playPauseButton.children[0];
+		// icon.classList.toggle('fa-pause');
+		// icon.classList.toggle('fa-play');
 	});
 	// delete
-	const clearButton = document.querySelector('#clearParticles');
-	clearButton.addEventListener('click', () => system.empty() );
+	clearButton.mouseClicked(() => system.empty() );
 	// respawn
-	const respawnButton = document.querySelector('#respawnParticles');
-	respawnButton.addEventListener('click', () => system.respawn() );
-	// toggle particle visibility
-	const toggleParticlesButton = document.querySelector('#toggleParticles');
-	toggleParticlesButton.addEventListener('click', () => {
-		showParticles = !showParticles;
-		let icon = toggleParticlesButton.children[0];
-		icon.toggleClasses('fa-eye', 'fa-eye-slash');
-		toggleParticlesButton.toggleClasses('btn-primary', 'btn-secondary');
-	});
-	// toggle vector visibility
-	const toggleVectorsButton = document.querySelector('#toggleVectors');
-	toggleVectorsButton.addEventListener('click', () => {
-		showVectorField = !showVectorField;
-		toggleVectorsButton.toggleClasses('btn-primary', 'btn-secondary');
-	});
-	// toggle axis visibility
-	const toggleAxesButton = document.querySelector('#toggleAxes');
-	toggleAxesButton.addEventListener('click', () => {
-		showAxes = !showAxes;
-		toggleAxesButton.toggleClasses('btn-primary', 'btn-secondary');
-	});
-	// toggle gid visibility
-	const toggleGridButton = document.querySelector('#toggleGrid');
-	toggleGridButton.addEventListener('click', () => {
-		showGrid = !showGrid;
-		toggleGridButton.toggleClasses('btn-primary', 'btn-secondary');
-	});
-	// hovering over plane check
-	const planeCanvas = document.getElementById('plane');
-	planeCanvas.addEventListener('mouseover', () => {
-		hovering = true;
-		planeCanvas.classList.add('hovering');
-	});
-	planeCanvas.addEventListener('mouseout', () => {
-		planeCanvas.classList.remove('hovering');
-		hovering = false;
-	});
+	respawnButton.mouseClicked(() => system.respawn() );
+	// // toggle particle visibility
+	// toggleParticlesButton.addEventListener('click', () => {
+	// 	showParticles = !showParticles;
+	// 	let icon = toggleParticlesButton.children[0];
+	// 	icon.toggleClasses('fa-eye', 'fa-eye-slash');
+	// 	toggleParticlesButton.toggleClasses('btn-primary', 'btn-secondary');
+	// });
+	// // toggle vector visibility
+	// toggleVectorsButton.addEventListener('click', () => {
+	// 	showVectorField = !showVectorField;
+	// 	toggleVectorsButton.toggleClasses('btn-primary', 'btn-secondary');
+	// });
+	// // toggle axis visibility
+	// toggleAxesButton.addEventListener('click', () => {
+	// 	showAxes = !showAxes;
+	// 	toggleAxesButton.toggleClasses('btn-primary', 'btn-secondary');
+	// });
+	// // toggle gid visibility
+	// toggleGridButton.addEventListener('click', () => {
+	// 	showGrid = !showGrid;
+	// 	toggleGridButton.toggleClasses('btn-primary', 'btn-secondary');
+	// });
+	// // hovering over plane check
+	// planeCanvas.addEventListener('mouseover', () => {
+	// 	hovering = true;
+	// 	planeCanvas.classList.add('hovering');
+	// });
+	// planeCanvas.addEventListener('mouseout', () => {
+	// 	planeCanvas.classList.remove('hovering');
+	// 	hovering = false;
+	// });
 	//
-	const presetFunctionsDiv = document.getElementById('presets');
-	// shortcuts as buttons to change the vector field to some preset vector funcitons
+	// vectorButton.addEventListener('click', () => {
+	// 	console.log('asdadsasd');
+	// });
 }
