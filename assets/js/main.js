@@ -94,10 +94,7 @@ function setup() {
 	plane = new Plane();
 	system = new ParticleSystem();
 	f = new VectorField();
-<<<<<<< HEAD
-=======
 	setupUI();
->>>>>>> presetVectorFields
 }
 
 function draw() {
@@ -150,8 +147,6 @@ Element.prototype.toggleClasses = function(className1, className2) {
 	this.classList.toggle(className1);
 	this.classList.toggle(className2);
 }
-<<<<<<< HEAD
-=======
 
 function setVectorField(index) {
 	f.func = vectorFunctions[index].eval;
@@ -210,4 +205,3 @@ function setupUI() {
 			.parent(presetsDiv);
 	}
 }
->>>>>>> presetVectorFields
