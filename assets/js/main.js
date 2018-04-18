@@ -97,7 +97,6 @@ function setup() {
 	system = new ParticleSystem();
 	f = new VectorField();
 	setupUI();
-	initializeUI();
 }
 
 function draw() {
@@ -151,55 +150,60 @@ Element.prototype.toggleClasses = function(className1, className2) {
 	this.classList.toggle(className2);
 }
 
-function setupUI() {
-	controlsDiv = document.getElementById('controls');
-	presetsDiv = document.getElementById('presets');
-	planeCanvas = document.getElementById('plane');
-	playPauseButton = createButton('Play/Pause').addClass('btn btn-primary').parent(controlsDiv);
-	clearButton = createButton('Clear').addClass('btn btn-primary').parent(controlsDiv);
-	respawnButton = createButton('Respawn').addClass('btn btn-primary').parent(controlsDiv);
-	toggleParticlesButton = createButton('Particles').addClass('btn btn-primary').parent(controlsDiv);
-	toggleVectorsButton = createButton('Vectors').addClass('btn btn-primary').parent(controlsDiv);
-	toggleAxesButton = createButton('Axes').addClass('btn btn-primary').parent(controlsDiv);
-	toggleGridButton = createButton('Grid').addClass('btn btn-primary').parent(controlsDiv);
-	let presetVectorButtons = [];
-	for (let i = 0; i < vectorFunctions.length; i++) {
-		let btn = createButton(vectorFunctions[i].latex).addClass('btn btn-primary').parent(presetsDiv);
-		btn.mouseClicked(() => {setVectorField(i);});
-	}
-}
-
 function setVectorField(index) {
 	f.func = vectorFunctions[index].eval;
 	f.vectors = f.newVectors();
 }
 
-function initializeUI() {
-	// play/pause
-	playPauseButton.mouseClicked(() => {
+function setupUI() {
+	controlsDiv = document.getElementById('controls');
+	presetsDiv = document.getElementById('presets');
+	planeCanvas = document.getElementById('plane');
+	playPauseButton = document.getElementById('playPause');
+	clearButton = document.getElementById('clearParticles');
+	respawnButton = document.getElementById('respawnParticles');
+	toggleParticlesButton = document.getElementById('toggleParticles');
+	toggleVectorsButton = document.getElementById('toggleVectors');
+	toggleAxesButton = document.getElementById('toggleAxes');
+	toggleGridButton = document.getElementById('toggleGrid');
+	playPauseButton.addEventListener('click', () => {
 		paused = !paused;
+		let icon = playPauseButton.children[0];
+		icon.toggleClasses('fa-pause', 'fa-play');
 	});
-	clearButton.mouseClicked(() => system.empty() );
-	respawnButton.mouseClicked(() => system.respawn() );
-	toggleParticlesButton.mouseClicked(() => {
+	clearButton.addEventListener('click', () => system.empty() );
+	respawnButton.addEventListener('click', () => system.respawn() );
+	toggleParticlesButton.addEventListener('click', () => {
 		showParticles = !showParticles;
+		let icon = toggleParticlesButton.children[0];
+		icon.toggleClasses('fa-eye', 'fa-eye-slash');
+		toggleParticlesButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
-	toggleVectorsButton.mouseClicked(() => {
+	toggleVectorsButton.addEventListener('click', () => {
 		showVectorField = !showVectorField;
+		toggleVectorsButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
-	toggleAxesButton.mouseClicked(() => {
+	toggleAxesButton.addEventListener('click', () => {
 		showAxes = !showAxes;
+		toggleAxesButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
-	toggleGridButton.mouseClicked(() => {
+	toggleGridButton.addEventListener('click', () => {
 		showGrid = !showGrid;
+		toggleGridButton.toggleClasses('btn-primary', 'btn-secondary');
 	});
 	planeCanvas.addEventListener('mouseover', () => {
 		hovering = true;
-		// planeCanvas.classList.add('hovering');
+		planeCanvas.classList.add('hovering');
 	});
 	planeCanvas.addEventListener('mouseout', () => {
 		hovering = false;
-		// planeCanvas.classList.remove('hovering');
+		planeCanvas.classList.remove('hovering');
 	});
-
+	// Traverse preset vector functions and create a button for each.
+	for (let i = 0; i < vectorFunctions.length; i++) {
+		createButton(vectorFunctions[i].latex)
+			.addClass('btn btn-primary')
+			.mouseClicked(() => {setVectorField(i);})
+			.parent(presetsDiv);
+	}
 }
