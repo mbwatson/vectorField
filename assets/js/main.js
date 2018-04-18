@@ -22,6 +22,42 @@ let toggleGridButton;
 let planeCanvas;
 let presetFunctionsDiv;
 
+const vectorFunctions = [
+	new VectorFunction(
+		(x,y) => y**3 - 9*y,
+		(x,y) => x**3 - 9*x,
+		'$\\langle y^3 - 9y, x^3 - 9x \\rangle$'),
+	new VectorFunction(
+		(x,y) => -y,
+		(x,y) => x,
+		'$\\langle -y, x \\rangle$'),
+	new VectorFunction(
+		(x,y) => x,
+		(x,y) => y,
+		'$\\langle x, y \\rangle$'),
+	new VectorFunction(
+		(x,y) => Math.sin(y),
+		(x,y) => Math.sin(x),
+		'$\\langle \\sin(y), \\sin(x) \\rangle$'),
+	new VectorFunction(
+		(x,y) => Math.sin(x) + Math.sin(y),
+		(x,y) => Math.sin(x) - Math.sin(y),
+		'$\\langle \\sin(x) + \\sin(y), \\sin(x) - \\sin(y) \\rangle$'),
+	new VectorFunction(
+		(x,y) => 0,
+		(x,y) => y*Math.sin(x),
+		'$\\langle y, y\\sin(x) \\rangle$'),
+	new VectorFunction(
+		(x,y) => x**3,
+		(x,y) => y**3,
+		'$\\langle x^3, y^3 \\rangle$'),
+	new VectorFunction(
+		(x,y) => Math.cos(x + y),
+		(x,y) => Math.sin(x*y),
+		'$\\langle \\cos(x + y), \\sin(xy) \\rangle$'),
+]
+
+
 function setup() {
 	config = {
 		'plane': {
@@ -38,7 +74,7 @@ function setup() {
 			'deltaVelocity': 0.1
 		},
 		'vector': {
-			'spacing': 0.5,
+			'spacing': 1,
 			'color': color(0, 255, 255, 128),
 			'weight': 2,
 		},
@@ -86,22 +122,6 @@ function draw() {
 	}
 }
 
-const vectorFunctions = [
-	({x, y}) => { return {'x': y**3 - 9*y, 'y': x**3 - 9*x } },
-	({x, y}) => { return { 'x': -y, 'y': x } },
-	({x, y}) => { return { 'x': x, 'y': y } },
-	({x, y}) => { return { 'x': Math.sin(y), 'y': Math.sin(x) } },
-	({x, y}) => { return { 'x': Math.sin(x) + Math.sin(y), 'y': Math.sin(x) - Math.sin(y) } },
-	({x, y}) => { return { 'x': 0, 'y': y*Math.sin(x) } },
-	({x, y}) => { return { 'x': x**3, 'y': y**3 } },
-	({x, y}) => { return { 'x': Math.cos(x + y), 'y': Math.sin(x*y) } },
-]
-
-function setVectorField(v) {
-	f.func = v;
-	f.vectors = f.newVectors();
-}
-
 function mouseXCoordinate() {
 	return (mouseX - width / 2) / plane.unit;
 }
@@ -133,6 +153,7 @@ Element.prototype.toggleClasses = function(className1, className2) {
 
 function setupUI() {
 	controlsDiv = document.getElementById('controls');
+	presetsDiv = document.getElementById('presets');
 	planeCanvas = document.getElementById('plane');
 	playPauseButton = createButton('Play/Pause').addClass('btn btn-primary').parent(controlsDiv);
 	clearButton = createButton('Clear').addClass('btn btn-primary').parent(controlsDiv);
@@ -141,7 +162,16 @@ function setupUI() {
 	toggleVectorsButton = createButton('Vectors').addClass('btn btn-primary').parent(controlsDiv);
 	toggleAxesButton = createButton('Axes').addClass('btn btn-primary').parent(controlsDiv);
 	toggleGridButton = createButton('Grid').addClass('btn btn-primary').parent(controlsDiv);
-	vectorButton = createButton('$\\langle -y, x \\rangle$');
+	let presetVectorButtons = [];
+	for (let i = 0; i < vectorFunctions.length; i++) {
+		let btn = createButton(vectorFunctions[i].latex).addClass('btn btn-primary').parent(presetsDiv);
+		btn.mouseClicked(() => {setVectorField(i);});
+	}
+}
+
+function setVectorField(index) {
+	f.func = vectorFunctions[index].eval;
+	f.vectors = f.newVectors();
 }
 
 function initializeUI() {
@@ -171,7 +201,5 @@ function initializeUI() {
 		hovering = false;
 		// planeCanvas.classList.remove('hovering');
 	});
-	vectorButton.mouseClicked(() => {
-		setVectorField(vectorFunctions[1]);
-	});
+
 }

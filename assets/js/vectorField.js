@@ -1,6 +1,6 @@
 class VectorField {
 	constructor() {
-		this.func = ({x, y}) => { return {'x': y**3 - 9*y, 'y': x**3 - 9*x }};
+		this.func = vectorFunctions[0].eval;
 		this.spacing = config.vector.spacing;
 		this.vectors = this.newVectors();
 	}
@@ -28,5 +28,12 @@ class VectorField {
 			v.tip = createVector(this.eval(v).x, this.eval(v).y);
 		}
 		return vectors;
+	}
+}
+
+class VectorFunction {
+	constructor(m, n, latex) {
+		this.eval = function({x, y}) { return {'x': m(x, y), 'y': n(x, y)} };
+		this.latex = latex;
 	}
 }
