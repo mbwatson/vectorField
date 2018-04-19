@@ -44,7 +44,8 @@ canvas {
   padding: 1em;
   text-align: center; }
   #presets button {
-    margin: 1em; }
+    padding: 0.25em 0.5em;
+    margin: 0.1em; }
 
 footer {
   color: #eee;
