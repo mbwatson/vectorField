@@ -65,7 +65,7 @@ const vectorFunctions = [
 		new VectorFunction(
 			(x,y) => Math.atan(x) + y**2,
 			(x,y) => Math.E**y - x**2,
-			'$\\langle \arctan(x) + y^2, e^y - x^2 \\rangle$'),
+			'$\\langle \\arctan(x) + y^2, e^y - x^2 \\rangle$'),
 ]
 
 
