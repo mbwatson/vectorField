@@ -11,32 +11,41 @@ I required more options and control, so this project was born.
 
 [https://mbwatson.github.io/vectorField](https://mbwatson.github.io/vectorField)
 
-## Features
+## Description
 
-The view is of the square [-5,5]x[-5,5] in the xy-plane.
+You will see the vectors representing a vector field over the square [-5,5]x[-5,5] in the xy-plane. You will also see a particle system arranged evenly about the square. The particles flow according to the forces imposed on them by the vector field.
+
+## Controls
 
 ### Buttons
 
-There are several buttons, whose functions are rather inutiive, but they allow you to...
-* Starts and stops animation
+There are several buttons allowing you to...
+
+* Start and stop the animation
 * Empty the particle system of its particles
 * Reset to particle system with particles at regularly spaced intervals on the plane
-* Show/hide particle system (they are still moving if unpaused, just invisible)
-* Show/hide vectors
-* Show/hide coordinate Axes
-* Show/hide the grid lines
+* Show and hide particle system (they are still moving if unpaused, just invisible)
+* Show and hide vectors
+* Show and hide coordinate Axes
+* Show and hide the grid lines
 
-## Mouse Control
+### Mouse
 
 With the mouse, you can add new particles to the particle system by clicking and dragging on the plane.
 
 In addition, you can change the animation speed by scrolling over the plane.
 
-## Preset Vector Functions
+### Preset Vector Functions
 
 Particles on the two-dimensional surface animate according to the forces imposed on them from the current vector field. This vector field can be changed, but only to a handful of preset ones as of this writing.
 
 ## Todo List
 
+There are many additions that would make this more useful as an instructional tool, which will be added as the time becomes available. A few of the most pressing issues are below.
+
+* Change viewport
+  * Grab and translate the plane to investigate other portions of the vector field.
+  * Zoom in and out
+
 * Use MathQuill to allow users to enter their own vector functions.
-* Change viewport of the plane to investigate other portions of the vector field.
+* Adjust vector and particle spacing and size on the fly.
