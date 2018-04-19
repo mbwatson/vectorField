@@ -38,5 +38,5 @@ Particles on the two-dimensional surface animate according to the forces imposed
 
 ## Todo List
 
-* Use MathQuill to sllow users to enter their own vector functions.
+* Use MathQuill to allow users to enter their own vector functions.
 * Change viewport of the plane to investigate other portions of the vector field.
