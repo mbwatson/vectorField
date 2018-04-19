@@ -29,15 +29,15 @@ There are several buttons allowing you to...
 * Show and hide coordinate Axes
 * Show and hide the grid lines
 
+### Preset Vector Functions
+
+Particles on the two-dimensional surface animate according to the forces imposed on them from the current vector field. This vector field can be changed, but only to a handful of preset ones as of this writing.
+
 ### Mouse
 
 With the mouse, you can add new particles to the particle system by clicking and dragging on the plane.
 
 In addition, you can change the animation speed by scrolling over the plane.
-
-### Preset Vector Functions
-
-Particles on the two-dimensional surface animate according to the forces imposed on them from the current vector field. This vector field can be changed, but only to a handful of preset ones as of this writing.
 
 ## Todo List
 
