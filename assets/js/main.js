@@ -1,15 +1,15 @@
+// Globals
 let config;
+let plane, system, viewport, f; // vector field
+let zoom = 5;
+let hovering = false;
+
+// Toggles
 let paused = true;
 let showVectorField = true;
 let showParticles = true;
 let showGrid = true;
 let showAxes = true;
-let zoom = 5;
-let system;
-let plane;
-let viewport;
-let f;
-let hovering = false;
 
 // Page Elements
 let functionHeading;
