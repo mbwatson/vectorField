@@ -51,13 +51,21 @@ const vectorFunctions = [
 		(x,y) => y*Math.sin(x),
 		'$\\langle y, y\\sin(x) \\rangle$'),
 	new VectorFunction(
-		(x,y) => x**3,
-		(x,y) => y**3,
-		'$\\langle x^3, y^3 \\rangle$'),
-	new VectorFunction(
 		(x,y) => Math.cos(x + y),
 		(x,y) => Math.sin(x*y),
 		'$\\langle \\cos(x + y), \\sin(xy) \\rangle$'),
+	new VectorFunction(
+		(x,y) => y,
+		(x,y) => x**2,
+		'$\\langle y, x^2 \\rangle$'),
+	new VectorFunction(
+		(x,y) => y**3,
+		(x,y) => x**2 + 3*x*y**2,
+		'$\\langle y^3, x^2 + 3xy^2 \\rangle$'),
+		new VectorFunction(
+			(x,y) => Math.atan(x) + y**2,
+			(x,y) => Math.E**y - x**2,
+			'$\\langle \arctan(x) + y^2, e^y - x^2 \\rangle$'),
 ]
 
 
