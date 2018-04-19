@@ -11,10 +11,19 @@ body {
 
 header {
   margin-top: 1em; }
-
-h1 {
-  color: #fff;
-  text-align: center; }
+  header .title {
+    color: #fff;
+    text-align: center;
+    font-size: 200%; }
+  header .function {
+    font-size: 150%;
+    color: #fff;
+    text-align: center;
+    background-color: #323232;
+    border: 2px solid #fff;
+    padding: 0.25em;
+    border-radius: 5px;
+    margin-bottom: 0.25em; }
 
 #planeContainer {
   text-align: center; }
