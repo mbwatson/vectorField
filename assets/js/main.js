@@ -62,12 +62,60 @@ const vectorFunctions = [
 		(x,y) => y**3,
 		(x,y) => x**2 + 3*x*y**2,
 		'$\\langle y^3, x^2 + 3xy^2 \\rangle$'),
-		new VectorFunction(
-			(x,y) => Math.atan(x) + y**2,
-			(x,y) => Math.E**y - x**2,
-			'$\\langle \\arctan(x) + y^2, e^y - x^2 \\rangle$'),
+	new VectorFunction(
+		(x,y) => Math.atan(x) + y**2,
+		(x,y) => Math.E**y - x**2,
+		'$\\langle \\arctan(x) + y^2, e^y - x^2 \\rangle$'),
 ]
 
+var surface = function( p ) {
+
+  p.setup = function() {
+		config = {
+			'plane': {
+				'grid': {
+					'color': color(128, 128, 128, 255),
+					'weight': 1,
+					'axis': {
+						'tickmarkSize': 10,
+						'color': color(128, 128, 128, 255),
+						'weight': 4,
+					}
+				},
+				'velocity': 0.2,
+				'deltaVelocity': 0.1
+			},
+			'vector': {
+				'spacing': 0.5,
+				'color': color(0, 255, 255, 128),
+				'weight': 2,
+			},
+			'particle': {
+				'spacing': 0.5,
+				'diameter': 8,
+				'color': color(220, 255, 220),
+			}
+		};
+		viewport = {
+			'x': { 'min': -zoom, 'max': zoom },
+			'y': { 'min': -zoom, 'max': zoom }
+		}
+		let planeContainer = document.querySelector('#planeContainer');
+		let canvas = createCanvas(600, 600).id('plane').parent(planeContainer);
+		plane = new Plane();
+		f = new VectorField();
+  };
+
+  p.draw = function() {
+		background(50);
+		translate(width / 2, height / 2)
+		if (showGrid) { plane.drawGrid(10); }
+		if (showAxes) { plane.drawAxes(); }
+		if (showVectorField) { plane.drawVectorField(); }
+  };
+};
+
+var myp5 = new p5(surface, 'planeContainer');
 
 function setup() {
 	config = {
@@ -93,7 +141,7 @@ function setup() {
 			'spacing': 0.5,
 			'diameter': 8,
 			'color': color(220, 255, 220),
-		},
+		}
 	};
 	viewport = {
 		'x': { 'min': -zoom, 'max': zoom },
@@ -109,7 +157,8 @@ function setup() {
 }
 
 function draw() {
-	background(50);
+	noLoop();
+	background(0);
 	translate(width / 2, height / 2)
 	if (showGrid) {
 		plane.drawGrid(10);
