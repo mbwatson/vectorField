@@ -11,6 +11,9 @@ let viewport;
 let f;
 let hovering = false;
 
+// Page Elements
+let functionHeading;
+
 // Controls
 let playPauseButton;
 let clearButton;
@@ -151,11 +154,15 @@ Element.prototype.toggleClasses = function(className1, className2) {
 function setVectorField(index) {
 	f.func = vectorFunctions[index].eval;
 	f.vectors = f.newVectors();
+	functionHeading.innerHTML = vectorFunctions[index].latex;
+	MathJax.Hub.Typeset();
 }
 
 function setupUI() {
 	controlsDiv = document.getElementById('controls');
 	presetsDiv = document.getElementById('presets');
+	functionHeading = document.getElementsByClassName('function')[0];
+	functionHeading.innerHTML = vectorFunctions[0].latex;
 	planeCanvas = document.getElementById('plane');
 	playPauseButton = document.getElementById('playPause');
 	clearButton = document.getElementById('clearParticles');
