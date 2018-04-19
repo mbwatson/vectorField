@@ -43,6 +43,10 @@ In addition, you can change the animation speed by scrolling over the plane.
 
 There are many additions that would make this more useful as an instructional tool, which will be added as the time becomes available. A few of the most pressing issues are below.
 
+* Redrawing the vectors every frame is to much unnecessary work, so layer two Canvas elements:
+  * (1) background plane consisting of vectors, axes, and grid and
+  * (2) the particle system.
+
 * Change viewport
   * Grab and translate the plane to investigate other portions of the vector field.
   * Zoom in and out
