@@ -62,10 +62,14 @@ const vectorFunctions = [
 		(x,y) => y**3,
 		(x,y) => x**2 + 3*x*y**2,
 		'$\\langle y^3, x^2 + 3xy^2 \\rangle$'),
-		new VectorFunction(
-			(x,y) => Math.atan(x) + y**2,
-			(x,y) => Math.E**y - x**2,
-			'$\\langle \\arctan(x) + y^2, e^y - x^2 \\rangle$'),
+	new VectorFunction(
+		(x,y) => y**3,
+		(x,y) => 3*x*y**2,
+		'$\\langle y^3, 3xy^2 \\rangle$'),
+	new VectorFunction(
+		(x,y) => Math.atan(x) + y**2,
+		(x,y) => Math.E**y - x**2,
+		'$\\langle \\arctan(x) + y^2, e^y - x^2 \\rangle$'),
 ]
 
 
