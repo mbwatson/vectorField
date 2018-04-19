@@ -48,7 +48,11 @@ canvas {
     margin: 0.1em; }
 
 footer {
-  color: #eee;
-  text-align: center; }
+  padding: 0 0.5em;
+  margin: 0;
+  font-size: 200%;
+  text-align: right; }
+  footer a {
+    transition: color 250ms linear; }
 
 /*# sourceMappingURL=style.css.map */
