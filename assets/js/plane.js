@@ -12,10 +12,10 @@ class Plane {
 		this.vectorArrowheadSize = this.vectorLength / 6;
 	}
 	drawAxes() {
-		stroke(this.axisColor);
-		strokeWeight(this.axisWeight);
-		line(0, -height / 2, 0, height / 2);
-		line(-width / 2, 0, width / 2, 0);
+		canvasSurface.stroke(this.axisColor);
+		canvasSurface.strokeWeight(this.axisWeight);
+		canvasSurface.line(0, -height / 2, 0, height / 2);
+		canvasSurface.line(-width / 2, 0, width / 2, 0);
 		for (let i = 1; i <= viewport.x.max; i += 1) {
 			this.xTick(i, i);
 			this.xTick(-i, -i);
@@ -26,28 +26,28 @@ class Plane {
 		}
 	}
 	drawGrid() {
-		stroke(this.gridColor);
-		strokeWeight(this.gridWeight);
+		canvasSurface.stroke(this.gridColor);
+		canvasSurface.strokeWeight(this.gridWeight);
 		for (let x = 0; x < width / 2; x += this.unit) {
-			line(x, -height / 2, x, height / 2);
-			line(-x, -height / 2, -x, height / 2);
+			canvasSurface.line(x, -height / 2, x, height / 2);
+			canvasSurface.line(-x, -height / 2, -x, height / 2);
 		}
 		for (let y = 0; y < height / 2; y += this.unit) {
-			line(-width / 2, y, width / 2, y);
-			line(-width / 2, -y, width / 2, -y);
+			canvasSurface.line(-width / 2, y, width / 2, y);
+			canvasSurface.line(-width / 2, -y, width / 2, -y);
 		}
 	}
 	xTick(value, label) {
-		noFill();
-		stroke(this.axisColor);
-		strokeWeight(this.axisWeight);
-		line(value * this.unit, -this.tickSize, value * this.unit, this.tickSize);
+		canvasSurface.noFill();
+		canvasSurface.stroke(this.axisColor);
+		canvasSurface.strokeWeight(this.axisWeight);
+		canvasSurface.line(value * this.unit, -this.tickSize, value * this.unit, this.tickSize);
 		// text(label, value * this.unit + this.tickSize, -2 * this.tickSize);
 	}
 	yTick(value) {
-		stroke(this.axisColor);
-		strokeWeight(this.axisWeight);
-		line(-this.tickSize, value * this.unit , this.tickSize, value * this.unit);
+		canvasSurface.stroke(this.axisColor);
+		canvasSurface.strokeWeight(this.axisWeight);
+		canvasSurface.line(-this.tickSize, value * this.unit , this.tickSize, value * this.unit);
 	}
 	// drawLabels() {
  // 		noStroke();

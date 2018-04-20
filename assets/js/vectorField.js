@@ -25,7 +25,7 @@ class VectorField {
 			}
 		}
 		for (let v of vectors) {
-			v.tip = createVector(this.eval(v).x, this.eval(v).y);
+			v.tip = canvasSurface.createVector(this.eval(v).x, this.eval(v).y);
 		}
 		return vectors;
 	}
