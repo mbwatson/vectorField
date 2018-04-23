@@ -28,8 +28,14 @@ header {
     margin-bottom: 0.25em;
   }
 }
-#planeContainer {
+#stage {
   text-align: center;
+  position: relative;
+  canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 canvas {
   border: 2px solid #fff;
@@ -47,6 +53,16 @@ canvas {
   padding: 1em;
   text-align: center;
   button {
-    margin: 1em;
+    padding: 0.25em 0.5em;
+    margin: 0.1em;
+  }
+}
+footer {
+  padding: 0 0.5em;
+  margin: 0;
+  font-size: 200%;
+  text-align: right;
+  a {
+    transition: color 250ms linear;
   }
 }

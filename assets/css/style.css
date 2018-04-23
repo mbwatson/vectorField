@@ -25,8 +25,13 @@ header {
     border-radius: 5px;
     margin-bottom: 0.25em; }
 
-#planeContainer {
-  text-align: center; }
+#stage {
+  text-align: center;
+  position: relative; }
+  #stage canvas {
+    position: absolute;
+    left: 0;
+    top: 0; }
 
 canvas {
   border: 2px solid #fff;

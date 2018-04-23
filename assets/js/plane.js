@@ -1,6 +1,6 @@
 class Plane {
 	constructor() {
-		this.unit = width / (viewport.x.max - viewport.x.min);
+		this.unit = canvasWidth / (viewport.x.max - viewport.x.min);
 		this.tickSize = config.plane.grid.axis.tickmarkSize;
 		this.axisColor = config.plane.grid.axis.color;
 		this.axisWeight = config.plane.grid.axis.weight;
@@ -49,17 +49,6 @@ class Plane {
 		canvasSurface.strokeWeight(this.axisWeight);
 		canvasSurface.line(-this.tickSize, value * this.unit , this.tickSize, value * this.unit);
 	}
-	// drawLabels() {
- // 		noStroke();
-	// 	for (let i = 1; i <= viewport.x.max; i += 1) {
-	// 		this.xTick(i, i);
-	// 		this.xTick(-i, -i);
-	// 	}
-	// 	for (let j = 1; j <= viewport.y.max; j += 1) {
-	// 		this.yTick(j);
-	// 		this.yTick(-j);
-	// 	}
-	// }
 	drawVectorField() {
 		for (let v of f.vectors) {
 			this.drawLocatedVector(v, v.tip);
@@ -68,7 +57,6 @@ class Plane {
 	drawLocatedVector(location, v) {
 		strokeWeight(this.vectorWeight);
 		stroke(this.vectorColor);
-		// easier to draw arrowhead
 		translate(this.unit * location.x, -this.unit * location.y);
 		rotate(PI - v.heading());
 		line(0, 0, -this.vectorLength, 0);
@@ -78,10 +66,5 @@ class Plane {
 		translate(this.vectorLength, 0);
 		rotate(v.heading() - PI);
 		translate(-this.unit * location.x, this.unit * location.y);
-
-		// simpler, harder to draw arrowhead
-		// strokeWeight(1);
-		// stroke(this.vectorColor);
-		// line(this.unit * location.x, this.unit * location.y, this.unit * location.x + 25*v.x/v.mag(), this.unit * location.y + -25*v.y/v.mag());
 	}
 }
